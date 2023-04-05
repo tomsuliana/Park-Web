@@ -1,0 +1,191 @@
+main > .container {
+    padding: 60px 15px 0;
+}
+
+nav {
+    height: 80px;
+}
+.question {
+    height: 200px;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    min-width: 500px;
+}
+
+.question-card {
+    height: 300px;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    min-width: 500px;
+}
+
+.tags {
+    width: 200px;
+}
+.question-avatar {
+    position: relative;
+    height:auto;
+    width: 70%;
+}
+
+.question-avatar > img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.settings-avatar {
+    position: relative;
+    height:auto;
+    width: 30%;
+    margin-left: 100px;
+}
+
+.settings-avatar > img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.answer-avatar {
+    height: 70px;
+    width: 70px;
+}
+
+.answer-avatar > img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.user-avatar{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+.user-avatar > img{
+    height: 10%;
+    width: 10%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.question-text {
+    margin-bottom: 5%;
+}
+
+/*
+.answer-text {
+    margin-bottom: 1%;
+}
+*/
+
+.question-text-card {
+    margin-bottom: 20%;
+}
+
+/*.d-flex {
+    margin: 0px 165px;
+}*/
+
+.navbar .avatar {
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-name {
+    /*position: absolute;
+    right: 15%;
+    top: 5px;*/
+    color: white;
+}
+
+.settings {
+    position: absolute;
+    right: 17%;
+    top: 40px;
+}
+
+.log-out {
+    position: absolute;
+    right: 13%;
+    top: 40px;
+}
+
+.like-btn {
+    background-color: pink;
+    color: white;
+    border-radius: 25%;
+}
+.like-btn:hover {
+    background-color: red;
+}
+
+/*.like-btn:active {
+    background-color: red;
+}*/
+
+.new-question {
+    height: 500px;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.new-question-title {
+    height: 500px;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.quest-text {
+    height: 300px;
+}
+
+.answer-text {
+    height: 50px;
+    margin-bottom: 1%;
+}
+
+.answer {
+    height: 100px;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    min-width: 600px;
+}
+
+.main-content {
+    min-width: 900px;
+}
+
+.error {
+    color: red;
+}
+
+#answer-place{
+    max-height: 75px;
+}
+
+#question-place{
+    max-height: 300px;
+}
+

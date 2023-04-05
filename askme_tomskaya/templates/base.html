@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en" class="h-100">
+<head>
+    <meta charset="utf-8">
+
+    <title>Sticky Footer Navbar Template · Bootstrap v5.3</title>
+    <link href="../static/css/bootstrap.css" rel="stylesheet" crossorigin="anonymous">
+
+    <!— Custom styles for this template —>
+    <link href="../static/css/my.css" rel="stylesheet">
+</head>
+<body class="d-flex flex-column h-100">
+
+    <header>
+    <!— Fixed navbar —>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Ask Pupkin</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+                </div>
+                <div class="d-flex">
+                    <div class="avatar">
+                        <img src="../static/img/img.png" alt="avatar">
+                    </div>
+                    <!--<div class="user-name">
+                        Dr. Pepper
+                    </div>
+                    <div class="settings">
+                        <a href="#"> Settings</a>
+                    </div>
+                    <div class="log-out">
+                        <a href="#"> Log out </a>
+                    </div>-->
+                    <div class="d-flex flex-column">
+                    <div class="text-center user-name">
+                        Dr. Pepper
+                    </div>
+                    <div class="d-flex">
+                      <a class="ms-1 me-1" href="#">Settings</a>
+                      <a class="ms-1 me-1" href="#">Log out</a>
+                    </div>
+          </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!— Begin page content —>
+    <main class="flex-shrink-0">
+        <div class="container main-content">
+            <div class="row">
+                <div class="col-3">
+                        <h1 class="mt-5">New questions </h1>
+                </div>
+                <div class="col-6">
+                    <h2 class="mt-5"><a href="#"> Hot questions </a></h2>
+                </div>
+            </div>
+
+        <div class="row">
+            <div class="col-9">
+
+            <div class="question">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="question-avatar">
+                            <img src="../static/img/img.png" alt="avatar">
+                        </div>
+                        <div class="col-8 text-center mt-2">
+                            <h6>5 <button class="like-btn">Like</button></h6>
+                        </div>
+                    </div>
+                    <div class="col-9">
+                        <h2><a href="#">Awesome question 1</a></h2>
+                        <div class="question-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</div>
+                        <div class="row">
+                            <div class="col-4">
+                            Answers (3)
+                            </div>
+                            <div class="col-8">
+                            Tags: <a href="#">black_jack</a>, <a href="#">black_jack</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="question">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="question-avatar">
+                            <img src="../static/img/img_1.png" alt="avatar">
+                        </div>
+                        <div class="col-8 text-center mt-2">
+                            <h6>5 <button class="like-btn">Like</button></h6>
+                        </div>
+                    </div>
+                    <div class="col-9">
+                        <h2><a href="#">Awesome question 2</a></h2>
+                        <div class="question-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</div>
+                        <div class="row">
+                            <div class="col-4">
+                            Answers (3)
+                            </div>
+                            <div class="col-8">
+                            Tags: <a href="#">black_jack</a>, <a href="#">black_jack</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="question">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="question-avatar">
+                            <img src="../static/img/img_2.png" alt="avatar">
+                        </div>
+                        <div class="col-8 text-center mt-2">
+                            <h6>5 <button class="like-btn">Like</button></h6>
+                        </div>
+                    </div>
+                    <div class="col-9">
+                        <h2><a href="#">Awesome question 3</a></h2>
+                        <div class="question-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</div>
+                        <div class="row">
+                            <div class="col-4">
+                            Answers (3)
+                            </div>
+                            <div class="col-8">
+                            Tags: <a href="#">black_jack</a>, <a href="#">black_jack</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-3 container pt-0">
+            <div class="row text-center">
+                <h2>Popular Tags</h2>
+            </div>
+            <div class="row">
+                <div class="col-2"></div>
+            <div class="col-8 text-center pr-2">
+                <a href="#">Perl</a>
+                <a href="#">Python</a>
+                <a href="#">Technopark</a>
+                <a href="#">MySQL</a>
+                <a href="#">Django</a>
+                <a href="#">Mail.ru</a>
+                <a href="#">Voloshin</a>
+                <a href="#">Firefox</a>
+            </div>
+            </div>
+
+            <div class="row text-center">
+                <h2>Best Members</h2>
+            </div>
+            <div class="row"><a href="#">Mr. Freeman</a></div>
+            <div class="row"><a href="#">Dr. House</a></div>
+            <div class="row"><a href="#">Bender</a></div>
+            <div class="row"><a href="#">Queen Victoria</a></div>
+            <div class="row"><a href="#">V.Pupkin</a></div>
+        </div>
+        </div>
+
+            <div>
+                <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+                </nav>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="footer mt-auto py-3 bg-dark">
+        <div class="container">
+            <span class="text-muted"></span>
+        </div>
+    </footer>
+
+    <script src="../static/js/bootstrap.js" ></script>
+
+</body>
+</html>
