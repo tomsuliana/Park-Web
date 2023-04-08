@@ -182,10 +182,17 @@ nav {
 }
 
 #answer-place{
-    max-height: 75px;
+    max-height: 80px;
+    height: 80px;
 }
 
 #question-place{
     max-height: 300px;
 }
+
+/*.pagination{
+    position: absolute;
+    bottom: 30px;
+}*/
+
 

@@ -1,0 +1,103 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en" class="h-100">
+<head>
+    <meta charset="utf-8">
+
+    <title>Askme</title>
+    <link rel="stylesheet" href="{% static "css/bootstrap.css" %}">
+
+    <!— Custom styles for this template —>
+    <link rel="stylesheet" href="{% static "css/my.css" %}">
+    <script src="{% static 'js/bootstrap.js' %}" async defer></script>
+</head>
+<body class="d-flex flex-column h-100">
+
+    <header>
+    <!— Fixed navbar —>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url 'index' %}" >Ask Pupkin</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    <a class="ms-5 btn btn-outline-primary"  href="{% url 'ask' %}" type="submit">Ask!</a>
+                </form>
+                </div>
+                <div class="d-flex">
+                    <div class="avatar">
+                        <img src="{% static 'img/img.png' %}" alt="avatar">
+                    </div>
+                    <div class="d-flex flex-column">
+                    <div class="text-center user-name">
+                        Dr. Pepper
+                    </div>
+                    <div class="d-flex">
+                      <a class="ms-1 me-1"  href="{% url 'settings' %}">Settings</a>
+                      <a class="ms-1 me-1"  href="{% url 'login' %}">Log out</a>
+                    </div>
+          </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!— Begin page content —>
+    <main class="flex-shrink-0">
+        <div class="container main-content">
+
+
+        <div class="row">
+            <div class="col-9">
+
+            {% block content %}{% endblock content %}
+
+        </div>
+        <div class="col-3 container pt-5">
+            <div class="row text-center">
+                <h2>Popular Tags</h2>
+            </div>
+            <div class="row">
+                <div class="col-2"></div>
+            <div class="col-8 text-center pr-2">
+                <a href="{% url 'tag' 'Perl' %}">Perl</a>
+                <a href="{% url 'tag' 'Python' %}">Python</a>
+                <a href="{% url 'tag' 'Technopark' %}">Technopark</a>
+                <a href="{% url 'tag' 'MySQL' %}">MySQL</a>
+                <a href="{% url 'tag' 'Django' %}">Django</a>
+                <a href="{% url 'tag' 'Mail.ru' %}">Mail.ru</a>
+                <a href="{% url 'tag' 'Voloshin' %}">Voloshin</a>
+                <a href="{% url 'tag' 'Firefox' %}">Firefox</a>
+            </div>
+            </div>
+
+            <div class="row text-center">
+                <h2>Best Members</h2>
+            </div>
+            <div class="row"><a href="#">Mr. Freeman</a></div>
+            <div class="row"><a href="#">Dr. House</a></div>
+            <div class="row"><a href="#">Bender</a></div>
+            <div class="row"><a href="#">Queen Victoria</a></div>
+            <div class="row"><a href="#">V.Pupkin</a></div>
+        </div>
+        </div>
+
+
+
+        </div>
+    </main>
+
+    <footer class="footer mt-auto py-3 bg-dark">
+        <div class="container">
+            <span class="text-muted"></span>
+        </div>
+    </footer>
+
+
+</body>
+</html>

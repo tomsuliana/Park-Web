@@ -1,0 +1,26 @@
+{% extends "inc/base.html" %}
+{% load static %}
+{% block content %}
+<div class="mt-5">
+<h2>New question</h2>
+</div>
+<div class="new-question mt-5">
+
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Title</span>
+        <input type="text" class="form-control" placeholder="How to build a moon park?" aria-label="Username" aria-describedby="basic-addon1">
+    </div>
+    <div class="input-group quest-text">
+        <div class="mt-0"><span class="input-group-text">Text</span></div>
+        <textarea class="form-control" id="question-place" placeholder="Really, how? Have no idea about it." aria-label="With textarea"></textarea>
+    </div>
+    <div class="input-group mt-3">
+        <span class="input-group-text" id="basic-addon2">Tags</span>
+        <input type="text" class="form-control" placeholder="moon, park, puzzle" aria-label="Username" aria-describedby="basic-addon1">
+    </div>
+    <div class="mt-3">
+    <a  href="{% url 'index' %}" type="submit" class="btn btn-success mb-3">Ask!</a>
+    </div>
+</div>
+
+{% endblock content %}

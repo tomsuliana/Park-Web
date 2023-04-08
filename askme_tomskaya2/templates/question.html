@@ -1,0 +1,45 @@
+{% extends "inc/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="question-card mt-5">
+<div class="row">
+    <div class="col-3">
+        <div class="question-avatar">
+            <img src="{% static 'img/img.png' %}" alt="avatar">
+        </div>
+        <div class="col-8 text-center mt-2">
+            <h6>5 <button class="like-btn">Like</button></h6>
+        </div>
+    </div>
+    <div class="col-9">
+        <h2><a href="#">{{ question.title }}</a></h2>
+        <div class="question-text-card">{{ question.text }}</div>
+        <div class="row">
+            <div class="col-4">
+            Answers (3)
+            </div>
+            <div class="col-8">
+            Tags: <a href="{% url 'tag' 'black-jack' %}">black_jack</a>, <a href="{% url 'tag' 'black-jack' %}">black_jack</a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% for answer in answers %}
+    {% include "inc/answer_item.html" %}
+{% endfor %}
+
+<div class="input-group answer-text">
+<textarea class="form-control" id="answer-place" placeholder="Enter your answer here..." aria-label="With textarea"></textarea>
+</div>
+<div class="mt-5">
+    <button type="submit" class="btn btn-success mb-3" >Answer</button>
+</div>
+{% include "inc/pagination.html" %}
+{% endblock content %}
+
+
+
+
+

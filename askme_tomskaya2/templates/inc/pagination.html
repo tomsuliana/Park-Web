@@ -1,0 +1,13 @@
+{% if pages|length > 1 %}
+<div>
+    <nav aria-label="Page navigation example" >
+        <ul class="pagination mb-0" >
+            {% for page in pages %}
+            <li class="page-item"><a class="page-link {% if page == cur_page %} bg-primary text-light {% endif %}"
+                                     href="{{ request.path|add:"?page="|add:page }}"> {{ page }} </a></li>
+
+            {% endfor %}
+        </ul>
+    </nav>
+</div>
+{% endif %}
