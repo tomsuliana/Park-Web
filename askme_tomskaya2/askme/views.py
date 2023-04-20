@@ -1,4 +1,4 @@
-from . import models
+from askme.models import *
 from django.shortcuts import render
 from django.core.paginator import Paginator
 from django.views.decorators.http import require_GET
@@ -24,7 +24,7 @@ def paginate(objects, request, per_page=10):
 
 @require_GET
 def index(request):
-    questions, cur_page, pages = paginate(models.QUESTIONS, request)
+    questions, cur_page, pages = paginate(Question.objects.all().order_by('-id'), request)
     context = {
         'questions': questions,
         'pages': pages,
@@ -34,13 +34,13 @@ def index(request):
 
 
 def question(request, question_id):
-    if (question_id >= len(models.QUESTIONS)):
+    if (question_id >= len(Question.objects.all()) + 4):
         raise Http404()
 
-    answers, cur_page, pages = paginate(models.ANSWERS, request, 3)
+    answers, cur_page, pages = paginate(Answer.objects.filter(question=question_id), request, 3)
 
     context = {
-        'question': models.QUESTIONS[question_id],
+        'question':  Question.objects.get(id=question_id),
         'answers': answers,
         'pages': pages,
         'cur_page': cur_page
@@ -49,7 +49,7 @@ def question(request, question_id):
 
 @require_GET
 def hot(request):
-    questions, cur_page, pages = paginate(models.QUESTIONS, request)
+    questions, cur_page, pages = paginate(Question.objects.in_rating_order(), request)
     context = {
         'questions': questions,
         'pages': pages,
@@ -59,7 +59,7 @@ def hot(request):
 
 @require_GET
 def tag(request, tag_name):
-    questions, cur_page, pages = paginate(models.QUESTIONS, request)
+    questions, cur_page, pages = paginate(Question.objects.by_tag(tag_name=tag_name), request)
     context = {
         'questions': questions,
         'pages': pages,

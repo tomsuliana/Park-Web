@@ -6,7 +6,7 @@
                 <img src="{% static "img/img.png" %}" alt="avatar">
             </div>
             <div class="col-8 text-center mt-2">
-                <h6>5 <button class="like-btn">Like</button></h6>
+                <h6>{{ question.likes }}<button class="like-btn">Like</button></h6>
             </div>
         </div>
         <div class="col-9">
@@ -14,10 +14,13 @@
             <div class="question-text">{{ question.text }}</div>
             <div class="row">
                 <div class="col-4">
-                <a class="ans-href-with-count" href="{% url "question" question.id %}">answers(5)</a>
+                <a class="ans-href-with-count" href="{% url "question" question.id %}">answers ({{ question.answers_count }}) </a>
                 </div>
                 <div class="col-8">
-                Tags: <a href="{% url 'tag' 'black-jack' %}">black_jack</a>, <a href="{% url 'tag' 'black-jack' %}">black_jack</a>
+                Tags:
+                    {% for tag in question.tags.all %}
+                    <a href="{% url 'tag' tag.tag_name%}">{{ tag.tag_name }}</a>
+                    {% endfor %}
                 </div>
             </div>
         </div>

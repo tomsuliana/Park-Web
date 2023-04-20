@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models import Sum
+from django.db.models.functions import Coalesce
 
 QUESTIONS = [
     {
@@ -26,12 +28,17 @@ class Tag(models.Model):
     tag_name = models.CharField(max_length=25)
 
 
-# class QuestionManager(models.Manager):
-#     def in_rating_order(self):
-#         queryset = self.get_queryset().annotate(
-#             rating=self.likes()
-#         )
-#         return queryset.order_by('rating')
+class QuestionManager(models.Manager):
+    def in_rating_order(self):
+        queryset = self.get_queryset().annotate(
+            rating=Coalesce(Sum('questionlike'), 0)
+        )
+        return queryset.order_by('-rating')
+
+
+    def by_tag(self, tag_name):
+        queryset = self.get_queryset()
+        return queryset.filter(tags__tag_name__exact=tag_name)
 
 
 class Question(models.Model):
@@ -48,7 +55,7 @@ class Question(models.Model):
     def likes(self):
         return QuestionLike.objects.filter(question=self).count()
 
-    # objects = QuestionManager()
+    objects = QuestionManager()
 
 
 class Answer(models.Model):
