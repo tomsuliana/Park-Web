@@ -30,10 +30,8 @@ class Tag(models.Model):
 
 class QuestionManager(models.Manager):
     def in_rating_order(self):
-        queryset = self.get_queryset().annotate(
-            rating=Coalesce(Sum('questionlike'), 0)
-        )
-        return queryset.order_by('-rating')
+        queryset = self.get_queryset()
+        return queryset.order_by('-likes')
 
 
     def by_tag(self, tag_name):
@@ -46,33 +44,37 @@ class Question(models.Model):
     text = models.TextField()
     tags = models.ManyToManyField(Tag)
     author = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    likes = models.IntegerField()
 
     @property
     def answers_count(self):
-        return Answer.objects.filter(question=self).count()
+        return self.answers.count()
 
-    @property
-    def likes(self):
-        return QuestionLike.objects.filter(question=self).count()
+    # @property
+    # def likes(self):
+    #     return QuestionLike.objects.filter(question=self).count()
 
     objects = QuestionManager()
 
 
 class Answer(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, related_name='answers', on_delete=models.CASCADE)
     text = models.TextField()
     author = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    likes = models.IntegerField()
 
-    @property
-    def likes(self):
-        return AnswerLike.objects.filter(answer=self).count()
+    # @property
+    # def likes(self):
+    #     return AnswerLike.objects.filter(answer=self).count()
 
 
 class QuestionLike(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    value = models.SmallIntegerField()
 
 
 class AnswerLike(models.Model):
     answer = models.ForeignKey(Answer, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    value = models.SmallIntegerField()

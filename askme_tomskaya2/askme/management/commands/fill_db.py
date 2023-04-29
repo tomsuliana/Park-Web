@@ -117,6 +117,60 @@ class Command(BaseCommand):
 
         print('Tags on questions are done')
 
+    def create_likes_values(self):
+        questionlikes = QuestionLike.objects.all()
+        val_list = [-1, 0, 1]
+
+        print('Start putting values to questionlikes')
+        for questionlike in questionlikes:
+            val = random.choice(val_list)
+            questionlike.value = val
+            questionlike.save()
+
+        print('finished putting values')
+
+        answerlikes = AnswerLike.objects.all()
+        print('Start putting value to answerlikes')
+        for answerlike in answerlikes:
+            val = random.choice(val_list)
+            answerlike.value = val
+            answerlike.save()
+        print('finished putting answerlike values')
+
+
+    def create_likes_to_questions(self):
+        # questionlikes = QuestionLike.objects.all()[:200]
+        #
+        # for questionlike in questionlikes:
+        #     question = questionlike.question
+        #     question.likes = question.likes + questionlike.value
+
+        questions = Question.objects.all()
+        print('Start counting question likes')
+
+        for question in questions:
+            for like in question.questionlike_set.all():
+                question.likes = question.likes + like.value
+                question.save()
+
+
+        print('Finished counting question likes')
+
+
+    def create_likes_to_answers(self):
+        answers = Answer.objects.all()
+        print('Start counting answer likes')
+
+        for answer in answers:
+            for like in answer.answerlike_set.all():
+                answer.likes = answer.likes + like.value
+                answer.save()
+
+
+        print('Finished counting answer likes')
+
+
+
     def add_arguments(self, parser):
         parser.add_argument('ratio', type=int)
 
@@ -131,10 +185,13 @@ class Command(BaseCommand):
         question_likes_count = ratio * 100
         answer_likes_count = ratio * 100
 
-        self.create_fake_users(users_count)
-        self.create_fake_questions(questions_count)
-        self.create_fake_answers(answers_count)
-        self.create_fake_tags(tags_count)
-        self.put_tags_to_questions()
-        self.like_questions(question_likes_count)
-        self.like_answers(answer_likes_count)
+        # self.create_fake_users(users_count)
+        # self.create_fake_questions(questions_count)
+        # self.create_fake_answers(answers_count)
+        # self.create_fake_tags(tags_count)
+        # self.put_tags_to_questions()
+        # self.like_questions(question_likes_count)
+        # self.like_answers(answer_likes_count)
+        # self.create_likes_values()
+        # self.create_likes_to_questions()
+        self.create_likes_to_answers()

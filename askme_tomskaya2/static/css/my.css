@@ -129,6 +129,8 @@ nav {
 }
 
 .like-btn {
+    width: 65px;
+    height: 30px;
     background-color: pink;
     color: white;
     border-radius: 25%;
