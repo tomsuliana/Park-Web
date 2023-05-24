@@ -1,8 +1,16 @@
 from askme.models import *
-from django.shortcuts import render
+from askme.forms import  LoginForm, RegistrationForm, SettingsForm
+from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from django.views.decorators.http import require_GET
 from django.http import Http404
+from django.contrib import auth
+from django.contrib.auth import login
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+
+from django.urls import reverse
 
 
 def paginate(objects, request, per_page=10):
@@ -69,20 +77,45 @@ def tag(request, tag_name):
     return render(request, 'tag.html', context=context)
 
 
-def login(request):
-    return render(request, 'login.html')
+def log_in(request):
+    # us = User.objects.filter(username="uliana")
+    # print(us[0].password)
+    if request.method == "GET":
+        login_form = LoginForm()
+    elif request.method == "POST":
+        login_form = LoginForm(request.POST)
+        if login_form.is_valid():
+            user = auth.authenticate(request=request, **login_form.cleaned_data)
+            if user:
+                login(request, user)
+                return redirect(reverse(request.POST['continue_']))
+            else:
+                login_form.add_error(None, "Invalid username or password")
+    return render(request, 'login.html', context={'form': login_form})
 
+def logout_view(request):
+    logout(request)
+    return redirect(request.META.get('HTTP_REFERER'))
 
 def signup(request):
-    return render(request, 'signup.html')
+    if request.method == "GET":
+        reg_form = RegistrationForm()
+    elif request.method == "POST":
+        reg_form = RegistrationForm(request.POST)
+        if reg_form.is_valid():
+            return redirect(reverse('index'))
+        # reg_form.add_error(None, "Invalid fields")
+    return render(request, 'signup.html', context={'form': reg_form})
 
-
+@login_required
 def ask(request):
     return render(request, 'ask.html')
 
-
+@login_required
 def settings(request):
-    return render(request, 'settings.html')
+    if request.method == "GET":
+        set_form = SettingsForm()
+    return render(request, 'settings.html', context={'form': set_form})
 
 
 
