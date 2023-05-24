@@ -9,7 +9,7 @@ from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-
+import pdb
 from django.urls import reverse
 
 
@@ -99,13 +99,19 @@ def logout_view(request):
 
 def signup(request):
     if request.method == "GET":
-        reg_form = RegistrationForm()
+        register_form = RegistrationForm()
     elif request.method == "POST":
-        reg_form = RegistrationForm(request.POST)
-        if reg_form.is_valid():
-            return redirect(reverse('index'))
-        # reg_form.add_error(None, "Invalid fields")
-    return render(request, 'signup.html', context={'form': reg_form})
+        register_form = RegistrationForm(request.POST)
+        if register_form.is_valid():
+            us = new_user_(request.POST)
+            login_form = LoginForm(request.POST)
+            if login_form.is_valid():
+                user = auth.authenticate(request=request, **login_form.cleaned_data)
+                if user:
+                    login(request, user)
+                    return redirect(reverse('index'))
+
+    return render(request, 'signup.html', context={'form': register_form})
 
 @login_required
 def ask(request):

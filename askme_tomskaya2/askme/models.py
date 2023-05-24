@@ -80,9 +80,9 @@ class AnswerLike(models.Model):
     value = models.SmallIntegerField()
 
 
-def new_us(us):
+def new_user_(us):
     new_user = User.objects.create_user(username=us['username'], first_name=us['first_name'], last_name=us['last_name'],
                                       email=us['email'], password=us['password'])
-    profile = profiles(user=new_user)
+    profile = Profile(user=new_user)
     profile.save()
     return new_user

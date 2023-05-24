@@ -1,5 +1,6 @@
 from django import forms
 from django.core.exceptions import ValidationError
+from django.contrib.auth.models import User
 from askme.models import *
 import re
 
@@ -18,6 +19,7 @@ class LoginForm(forms.Form):
 class RegistrationForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
     password_check = forms.CharField(widget=forms.PasswordInput)
+    continue_ = forms.CharField(widget=forms.HiddenInput(), initial='index')
 
     class Meta:
         model = User
@@ -60,9 +62,18 @@ class RegistrationForm(forms.ModelForm):
 
 
 class SettingsForm(forms.ModelForm):
+    avatar = forms.ImageField()
+
     class Meta:
-        model = Profile
-        fields = ['avatar']
+        model = User
+        fields = ['username', 'email']
+
+    def __init__(self, *args, **kwargs):
+        super(SettingsForm, self).__init__(*args, **kwargs)
+        if self.instance:
+            self.initial['username'] = self.instance.username
+            self.initial['email'] = self.instance.email
+
 
 
 
